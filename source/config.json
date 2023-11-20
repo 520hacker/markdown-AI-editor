@@ -1,0 +1,18 @@
+{
+    "static_type": "local",
+    "static_domain": "http://static-2504.qiangtu.com",
+    "static_max_file_size": "104857600",
+    "echo": {
+        "username": "echo ”√ªß√˚",
+        "password": "echo √‹¬Î"
+    },
+    "oss": {
+        "ID": "",
+        "Secret": "",
+        "Bucket": "",
+        "Endpoint": "",
+        "Directory": "",
+        "Link": "",
+        "Image_Format": ""
+    }
+}

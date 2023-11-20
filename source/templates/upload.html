@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Upload Test</title>
+</head>
+<body>
+  <h1>Upload Test</h1>
+  
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file1"><br>
+    <input type="file" name="file2"><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    const form = document.querySelector('form');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const data = new FormData(form);
+
+      fetch('/upload', {
+        method: 'POST',
+        body: data
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+      });
+    });
+  </script>
+
+</body>
+</html>

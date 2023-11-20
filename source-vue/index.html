@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Echo</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>
+      这个event的值是一个Response对象，这是Fetch API的一部分。这个对象包含了HTTP响应的各种信息。下面是这个对象的一些主要属性：
+    </h1>
+    <p>
+    <pre>
+      Vite 的反向代理是基于 http-proxy-middleware 实现的，而 http-proxy-middleware 支持 SSE（Server-Sent Events）。因此，Vite 的反向代理应该也支持 SSE。
+
+      然而，你需要注意的是，SSE 是一个持久的 HTTP 连接，如果你的代理服务器或者客户端不支持持久连接，可能会出现问题。此外，如果你的代理设置中启用了 changeOrigin，可能会影响到 SSE 的行为，因为这会改变请求的 Host 头部。
+      
+      如果你在使用 SSE 时遇到问题，你可能需要检查你的代理服务器和客户端的配置，以确保它们都支持 SSE。</pre>
+    </p>
+    <textarea>
+      type: 响应的类型，这里的值是basic，表示这是一个基本的请求。
+      url: 请求的URL，这里的值是http://127.0.0.1:5174/api/echo/shortcut/list。
+      redirected: 这个布尔值表示是否发生了重定向，这里的值是false，表示没有发生重定向。
+      status: HTTP状态码，这里的值是200，表示请求成功。
+      ok: 这个布尔值表示请求是否成功，这里的值是true，表示请求成功。
+      statusText: HTTP状态文本，这里的值是OK，表示请求成功。
+      headers: 这是一个Headers对象，包含了响应的HTTP头部信息。
+      body: 这是一个ReadableStream对象，包含了响应的主体内容。这里的bodyUsed值是false，表示主体内容还没有被读取。
+      如果你想获取响应的JSON数据，你需要使用response.json()方法。这个方法返回一个Promise，你可以在这个Promise解析完成后获取数据。例如：</textarea>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+  <script type="module" src="/src/background.js"></script>
+</body>
+
+</html>

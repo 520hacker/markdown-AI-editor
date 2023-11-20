@@ -1,0 +1,26 @@
+{
+  "name": "echo",
+  "version": "0.1.2",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build:template": "vite build --config vite.template.config.js",
+    "build:default": "vite build",
+    "build": "npm run build:default && npm run build:template",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
+    "@microsoft/fetch-event-source": "^2.0.1",
+    "@soerenmartius/vue3-clipboard": "^0.1.2",
+    "ant-design-vue": "^3.2.20",
+    "dayjs": "^1.11.7",
+    "showdown": "^2.1.0",
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "unplugin-vue-components": "^0.24.1",
+    "vite": "^4.1.4"
+  }
+}

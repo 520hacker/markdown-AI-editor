@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="static/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>随手记</title>
+    <meta name="description" content="易于使用的 Markdown 编辑器，为适配不同的应用场景而生。" />
+    <link type="text/css" rel="stylesheet" href="static/base.css" charset="utf-8" />
+    <link type="text/css" rel="stylesheet" href="static/index.css" charset="utf-8" />
+    <script src="static/vue.js" defer></script>
+    <script src="static/vditor.js" defer></script>
+    <script src="static/axios.js" defer></script>
+    <script src="static/qrcode.js" defer></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="wrapper" style="padding-top:5px;">
+            <div id="vditor"></div>
+        </div> 
+    </div>
+    <div id="popup-frame">
+        <div id="qrcode-frame">
+            <div id="qrcode"></div>
+            <div id="qrcode-message">
+                <span>更新已保存，如需私藏请使用导出功能</span><br />
+                <span id="qrcode-url"></span>
+            </div>
+        </div>
+    </div>
+    <script src="static/site.js"></script>
+    <script src="scripts/content.js"></script>
+</body>
+
+</html>

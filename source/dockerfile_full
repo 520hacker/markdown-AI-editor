@@ -1,0 +1,17 @@
+# 第一阶段：构建阶段
+FROM python:3.9 as builder
+
+WORKDIR /app 
+
+# 安装构建所需依赖项 
+RUN pip install flask markdown  
+
+# 复制应用代码
+COPY . .
+  
+
+# 暴露端口
+EXPOSE 5000
+
+# 定义启动命令
+CMD [ "python", "app.py" ]
