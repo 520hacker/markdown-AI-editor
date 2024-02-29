@@ -25,6 +25,7 @@ class Uploader:
         self.init_db()
 
     def init_db(self):
+        os.makedirs(os.path.dirname(self.dbpath), exist_ok=True)
         conn = sqlite3.connect(self.dbpath)
         cursor = conn.cursor()
         cursor.execute(
