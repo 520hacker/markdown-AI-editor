@@ -4,7 +4,7 @@ WORKDIR /build
 
 # 安装构建所需依赖项
 RUN apt-get update && apt-get install -y libgcc1
-RUN pip install flask markdown oss2 chardet cryptography
+RUN pip install flask markdown oss2 requests chardet cryptography
 
 # 复制应用代码
 COPY . .
@@ -22,7 +22,6 @@ RUN apt-get update && apt-get install -y libgcc1
 COPY . .
 COPY --from=builder /build/*.py .
 COPY --from=builder /build/templates .
-COPY --from=builder /build/files .
 COPY --from=builder /usr/local/lib/python3.9/site-packages /usr/local/lib/python3.9/site-packages
 
 ENV STATIC_DOMAIN=http://static.example.com
