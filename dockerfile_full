@@ -4,7 +4,7 @@ FROM python:3.9 as builder
 WORKDIR /app 
 
 # 安装构建所需依赖项 
-RUN pip install flask markdown  
+RUN pip install flask markdown requests oss2
 
 # 复制应用代码
 COPY . .

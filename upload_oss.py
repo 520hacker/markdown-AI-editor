@@ -1,4 +1,4 @@
- 
+# -*- coding: utf-8 -*-
 from config import Config
 import oss2
 import os
