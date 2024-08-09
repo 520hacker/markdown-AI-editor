@@ -21,6 +21,32 @@
 
 1. 使用以下命令获取我们的Docker镜像：`docker pull odinluo/suishouji:latest`。
 2. 将端口映射到5000，并将数据和文件保留，可以通过映射目录 `/app/files`来实现。
+3. 参考compose配置：
+
+```yaml
+version: '3'
+services:
+  twoapi:
+    image: odinluo/suishouji:latest
+    ports:
+      - 7028:5000
+    deploy:
+      resources:
+        limits:
+          memory: 500m
+    environment:
+      - STATIC_DOMAIN=https://2504-static.qiangtu.com
+    volumes:
+      - /www/wwwroot/suishouji.qiangtu.com:/app/files
+      - /www/wwwroot/2504-static.qiangtu.com:/app/assets
+
+```
+
+注： 本初采用本地化图床，未采用oss, 则需要配置图床域名 STATIC_DOMAIN 和本地图床文件夹 /www/wwwroot/2504-static.qiangtu.com。 
+
+### 请注意，图床域名指向的站点请设置为纯静态模式！！！！！！
+
+
 
 ## 特色与亮点
 
