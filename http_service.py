@@ -11,9 +11,12 @@ import requests
 from flask import (Flask, Response, jsonify, redirect, render_template,
                    request, send_from_directory, stream_with_context, url_for)
 
+from flask_cors import CORS
 from upload import Uploader
 
 app = Flask(__name__)
+
+CORS(app, resources={r"/api/*": {"origins": "*"}})  # Replace '/api/*' with your endpoint and '*' with the allowed origin
 
 app.config["UPLOAD_FOLDER"] = os.path.join("files", "note")
 app.config["DATABASE_PATH"] = os.path.join(os.getcwd(), "files", "db", "histories.db")
@@ -54,9 +57,17 @@ def static_files(filename):
         "vditor.js",
         "base.css",
         "index.css",
+        "light.css",
+        "dark.css",
+        "wechat.css",
+        "ant-design.css",
         "favicon.ico",
         "qrcode.js",
         "site.js",
+        "en_US.js",
+        "zh_CN.js",
+        "zh_TW.js",
+        "lute.min.js"
     ]
     if filename not in allowed_files:
         return ""
@@ -136,6 +147,37 @@ def new_page():
     # 跳转到对应的/{key}页面
     return redirect(url_for("single_page", key=key))
 
+@app.route("/api/key", methods=["GET"])
+def new_key():
+    conn = sqlite3.connect(app.config["DATABASE_PATH"])
+    cursor = conn.cursor()
+    key_length = 4
+    start_time = time.time() * 1000  # Millisecond timestamp
+
+    while True:
+        key = generate_key(key_length)
+        cursor.execute("SELECT * FROM keys WHERE key=?", (key,))
+        result = cursor.fetchone()
+
+        if not result:
+            # Insert the new key into the keys table
+            cursor.execute("INSERT INTO keys (key) VALUES (?)", (key,))
+            conn.commit()
+            break
+        else:
+            # If a key collision occurs, try again after a short pause
+            time.sleep(0.01)  # Sleep for 10ms to avoid tight loop
+
+        # Increment key length if it takes too long to find a unique key
+        end_time = time.time() * 1000
+        if end_time - start_time >= 1000:
+            key_length += 1
+            start_time = end_time  # Reset the timer for the new key length
+
+    conn.close()
+
+    # Return the key as a JSON response
+    return jsonify({"key": key})
 
 @app.route("/api/get/<key>", methods=["GET"])
 def get_content(key):
